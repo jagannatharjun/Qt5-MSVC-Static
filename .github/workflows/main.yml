@@ -36,13 +36,13 @@ jobs:
       shell: cmd
       run: |
         tools\gnuwin32\bin\curl -L -C - -O http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit-portable.zip
-        tools\gnuwin32\bin\curl x -aos -y -oC:\Strawberry strawberry-perl-5.30.2.1-64bit-portable.zip
+        tools\gnuwin32\bin\7z x -aos -y -oC:\Strawberry strawberry-perl-5.30.2.1-64bit-portable.zip
     
     - name: download python
       shell: cmd
       run: |
         tools\gnuwin32\bin\curl -L -C - -O https://www.python.org/ftp/python/3.7.7/python-3.7.7-embed-amd64.zip
-        tools\gnuwin32\bin\curl x -aos -y -oC:\Python python-3.7.7-embed-amd64.zip
+        tools\gnuwin32\bin\7z x -aos -y -oC:\Python python-3.7.7-embed-amd64.zip
         
     - name: downloading files
       shell: cmd
