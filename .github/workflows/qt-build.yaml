@@ -1,0 +1,48 @@
+name: qt-static build
+ 
+on:
+  push:
+    branches: [ test-workflow ]
+
+# NOTE: stuff inside ${{}} gets evaluated by the GitHub Actions system before anything else
+# see the docs for "context" in GitHub Actions
+jobs:
+  win_vcpkg_test_nightly_release_build:
+    name: "qt-static build"
+    runs-on: windows-2019
+      
+    steps:
+    # checkout the repo to the default working dir. repo files will be immediately at top-level in the default working dir.
+    # so, for example the path to README.md is just .\README.md and not .\qBittorrent\README.md
+    - name: checkout repo
+      uses: actions/checkout@v2
+
+   # Cache/Restore the vcpkg's build artifacts.
+    - name: Cache artifacts
+      uses: actions/cache@v1
+      with:
+        path: C:\Qt
+        # The key will be different each time a different version of vcpkg is used, or different ports are installed.
+        key: qtbase-14.1
+
+     
+    - name: enable Developer Command Prompt
+      uses: ilammy/msvc-dev-cmd@v1.1.0
+      with:
+        arch: amd64
+        spectre: true
+        
+    - name: build qt
+      shell: cmd
+      run: |
+        qt download
+        qt openssl
+        qt setup
+        qt build
+        
+    # ...and upload zip with artifcats
+    - name: "upload artifact as zip"
+      uses: actions/upload-artifact@v1
+      with:
+        name: qtbase_builds
+        path: C:\Qt
