@@ -3,7 +3,7 @@
 
 set MSVCVER=2019
 set QTVER=5.14.2
-set SSLVER=1.1.1d
+set SSLVER=1.1.1f
 set PREFIX=C:\Qt
 set EXTRABUILDOPTIONS=-qt-sqlite
 set PATH=C:\Python\;C:\Python27\;C:\Strawberry\perl\bin;%PATH%

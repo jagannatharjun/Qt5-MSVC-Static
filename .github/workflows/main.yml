@@ -31,12 +31,32 @@ jobs:
       with:
         arch: amd64
         spectre: true
+       
+    - name: download strawberryperl
+      shell: cmd
+      run: |
+        tools\gnuwin32\bin\curl -L -C - -O http://strawberryperl.com/download/5.30.2.1/strawberry-perl-5.30.2.1-64bit-portable.zip
+        tools\gnuwin32\bin\curl x -aos -y -oC:\Strawberry strawberry-perl-5.30.2.1-64bit-portable.zip
+    
+    - name: download python
+      shell: cmd
+      run: |
+        tools\gnuwin32\bin\curl -L -C - -O https://www.python.org/ftp/python/3.7.7/python-3.7.7-embed-amd64.zip
+        tools\gnuwin32\bin\curl x -aos -y -oC:\Python python-3.7.7-embed-amd64.zip
         
-    - name: build qt
+    - name: downloading files
       shell: cmd
       run: |
         qt download
+    
+    - name: building openssl
+      shell: cmd
+      run: | 
         qt openssl
+        
+    - name: building qt
+      shell: cmd
+      run: |
         qt setup
         qt build
         
