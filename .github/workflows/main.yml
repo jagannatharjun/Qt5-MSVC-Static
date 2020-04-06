@@ -54,10 +54,14 @@ jobs:
       run: | 
         qt openssl
         
-    - name: building qt
+    - name: settingup qt
       shell: cmd
       run: |
         qt setup
+        
+    - name: building qt
+      shell: cmd
+      run: | 
         qt build
         
     # ...and upload zip with artifcats
